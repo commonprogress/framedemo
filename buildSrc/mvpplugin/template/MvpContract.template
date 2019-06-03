@@ -1,0 +1,20 @@
+package ${applicaitionId}.${packageName}.contract;
+
+import com.laoyuegou.android.lib.mvp.basemvps.MvpPresenter;
+import com.laoyuegou.android.lib.mvp.basemvps.MvpView;
+
+/**
+ * @author ${author}
+ * @date: ${date}
+ * @Description:
+ */
+public interface ${functionName}Contract {
+
+    interface View extends MvpView {
+
+    }
+
+    interface Presenter extends MvpPresenter<View> {
+
+    }
+}

@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">mvplibrary</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="a_0005">网络不稳定,请稍候重试</string>
+    <string name="a_0014">未知错误</string>
+    <string name="a_0977">请求超时。</string>
+    <string name="a_1439">网络中断，请检查您的网络状态</string>
+    <string name="a_0210">网络不给力</string>
+</resources>

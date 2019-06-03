@@ -1,0 +1,25 @@
+package ${applicaitionId}.${packageName}.presenter;
+
+import com.laoyuegou.android.lib.mvp.MvpBasePresenter;
+import ${applicaitionId}.${packageName}.contract.${functionName}Contract;
+
+/**
+ * @author ${author}
+ * @date: ${date}
+ * @Description:
+ */
+public class ${functionName}Presenter extends MvpBasePresenter<${functionName}Contract.View>
+    implements ${functionName}Contract.Presenter{
+
+
+    @Override
+    public void attachView(${functionName}Contract.View view) {
+        super.attachView(view);
+
+    }
+
+    @Override
+    public void cancelRequestOnDestroy() {
+
+    }
+}

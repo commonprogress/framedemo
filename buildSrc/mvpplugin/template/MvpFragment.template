@@ -1,0 +1,107 @@
+package ${applicaitionId}.${packageName}.fragment;
+
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.view.View;
+
+import com.laoyuegou.base.fragment.BaseMvpFragment;
+import ${applicaitionId}.R;
+import ${applicaitionId}.${packageName}.contract.${functionName}Contract;
+import ${applicaitionId}.${packageName}.presenter.${functionName}Presenter;
+
+/**
+ * @Author: ${author}
+ * @Date: ${date}
+ * @Description:
+ */
+public class ${functionName}Fragment
+        extends BaseMvpFragment<${functionName}Contract.View, ${functionName}Contract.Presenter>
+        implements ${functionName}Contract.View {
+
+    public static final String TAG = ${functionName}Fragment.class.getSimpleName();
+
+    /**
+     * ———————————————— ↓↓↓↓ BaseMvpFragment code ↓↓↓↓ ————————————————
+     */
+    @Override
+    public String getFragmentTag() {
+        return TAG;
+    }
+
+    @Override
+    public ${functionName}Contract.Presenter createPresenter() {
+        return new ${functionName}Presenter();
+    }
+
+    public static ${functionName}Fragment newInstance() {
+        ${functionName}Fragment fragment = new ${functionName}Fragment();
+        Bundle argument = new Bundle();
+        argument.putString("name", TAG);
+        fragment.setArguments(argument);
+        return fragment;
+    }
+
+    /**
+     * ———————————————— ↓↓↓↓ MvpView code ↓↓↓↓ ————————————————
+     */
+
+    @Override
+    public void showLoading() {
+        if (isAdded()) {
+            showLoadingDialog(getActivity());
+        }
+    }
+
+    @Override
+    public void dismissLoading() {
+        if (isAdded()) {
+            dismissLoadingDialog();
+        }
+    }
+
+    @Override
+    public void showError(String errMes) {
+
+    }
+
+    @Override
+    public boolean isAlived() {
+        return isAdded();
+    }
+
+    /**
+     * ———————————————— ↓↓↓↓ Lifecycle code ↓↓↓↓ ————————————————
+     */
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public int getResourceId() {
+         return R.layout.fragment_${layoutName};
+    }
+
+    /**
+     * ———————————————— ↓↓↓↓ ${functionName}Fragment.View code ↓↓↓↓ ————————————————
+     */
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+    }
+
+}

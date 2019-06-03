@@ -1,0 +1,92 @@
+package ${applicaitionId}.${packageName}.activity;
+
+import android.content.Context;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+
+import com.laoyuegou.base.activity.BaseMvpActivity;
+import ${applicaitionId}.R;
+import ${applicaitionId}.${packageName}.contract.${functionName}Contract;
+import ${applicaitionId}.${packageName}.presenter.${functionName}Presenter;
+
+/**
+ * @Author: ${author}
+ * @Date: ${date}
+ * @Description:
+ */
+public class ${functionName}Activity extends BaseMvpActivity<${functionName}Contract.View,
+        ${functionName}Contract.Presenter> implements ${functionName}Contract.View {
+
+    public static final String TAG = ${functionName}Activity.class.getSimpleName();
+
+    /**
+     * ———————————————— ↓↓↓↓ BaseMvpActivity code ↓↓↓↓ ————————————————
+     */
+
+    @Override
+    public ${functionName}Contract.Presenter createPresenter() {
+        return new ${functionName}Presenter();
+    }
+
+    /**
+     * ———————————————— ↓↓↓↓ MvpView code ↓↓↓↓ ————————————————
+     */
+
+    @Override
+    public void showError(String errMes) {
+
+    }
+
+    @Override
+    public void showLoading() {
+        showLoadingDialog();
+    }
+
+    @Override
+    public void dismissLoading() {
+        dismissLoadingDialog();
+    }
+
+    @Override
+    public Context getContext() {
+        return this;
+    }
+
+    @Override
+    public boolean isAlived() {
+        return !isFinishing();
+    }
+
+    /**
+     * ———————————————— ↓↓↓↓ Lifecycle code ↓↓↓↓ ————————————————
+     */
+
+    @Override
+    public int getResourceId() {
+        return R.layout.activity_${layoutName};
+    }
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    /**
+    * ———————————————— ↓↓↓↓ ${functionName}Activity.View code ↓↓↓↓ ————————————————
+    */
+
+    @Override
+    public void initHeader() {
+
+    }
+
+    @Override
+    public void initWidgets() {
+
+    }
+}
