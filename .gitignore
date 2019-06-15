@@ -49,3 +49,5 @@ build/
 
 /buildSrc/mvpplugin/.settings/
 /buildSrc/mvpplugin/build/
+
+/gradle/
