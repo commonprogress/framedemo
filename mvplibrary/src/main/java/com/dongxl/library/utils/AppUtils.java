@@ -7,6 +7,7 @@
 package com.dongxl.library.utils;
 
 import android.annotation.TargetApi;
+import android.app.ActivityManager;
 import android.app.Application;
 import android.content.ComponentName;
 import android.content.Context;
@@ -587,6 +588,5 @@ public class AppUtils {
         viewIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
         context.startActivity(viewIntent);
     }
-
 
 }
