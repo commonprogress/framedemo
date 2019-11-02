@@ -27,11 +27,6 @@ import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
 /**
- * author：luck
- * project：laoyuegou
- * package：com.laoyuegou.base.net.retrofitUtil
- * email：893855882@qq.com
- * data：2017/8/28
  * desc：https认证
  */
 public class HttpsUtils {

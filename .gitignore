@@ -23,7 +23,7 @@ build/
 
 .DS_Store
 .settings/
-*.properties
+# *.properties
 
 
 /.gradle/

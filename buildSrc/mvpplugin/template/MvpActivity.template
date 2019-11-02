@@ -2,9 +2,9 @@ package ${applicaitionId}.${packageName}.activity;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
-import com.laoyuegou.base.activity.BaseMvpActivity;
+import com.dongxl.library.mvp.BaseMvpActivity;
 import ${applicaitionId}.R;
 import ${applicaitionId}.${packageName}.contract.${functionName}Contract;
 import ${applicaitionId}.${packageName}.presenter.${functionName}Presenter;
@@ -39,12 +39,12 @@ public class ${functionName}Activity extends BaseMvpActivity<${functionName}Cont
 
     @Override
     public void showLoading() {
-        showLoadingDialog();
+//        showLoadingDialog();
     }
 
     @Override
     public void dismissLoading() {
-        dismissLoadingDialog();
+//        dismissLoadingDialog();
     }
 
     @Override
@@ -81,12 +81,7 @@ public class ${functionName}Activity extends BaseMvpActivity<${functionName}Cont
     */
 
     @Override
-    public void initHeader() {
-
-    }
-
-    @Override
-    public void initWidgets() {
+    public void initViews() {
 
     }
 }

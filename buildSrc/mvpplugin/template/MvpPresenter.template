@@ -1,6 +1,6 @@
 package ${applicaitionId}.${packageName}.presenter;
 
-import com.laoyuegou.android.lib.mvp.MvpBasePresenter;
+import com.dongxl.library.mvp.MvpBasePresenter;
 import ${applicaitionId}.${packageName}.contract.${functionName}Contract;
 
 /**

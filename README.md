@@ -3,15 +3,16 @@
 
 需要在使用buildSrc 插件的module下创建一个mvpGenerator.properties文件
 
-里面填充内容位：
-applicationId=com.laoyuegou.android
-isLibrarys=false 
-author=dongxl
-isViewActivity=false
-packageName=homepage
-functionName=GameTypeFragment
+# 里面填充内容位：
 
-说明：applicationId： 所在module 包名 如：com.example 
+* applicationId=com.example
+* isLibrarys=false 
+* author=dongxl
+* isViewActivity=false
+* packageName=homepage
+* functionName=GameType
+
+* 说明：applicationId： 所在module 包名 如：com.example 
      isLibrarys： 是否在module下创建 ture module下创建
      author： 自己
      isViewActivity： 创建是否Activity true Activity false Fragment

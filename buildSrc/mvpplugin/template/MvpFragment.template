@@ -1,10 +1,10 @@
 package ${applicaitionId}.${packageName}.fragment;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.view.View;
 
-import com.laoyuegou.base.fragment.BaseMvpFragment;
+import com.dongxl.library.mvp.BaseMvpFragment;
 import ${applicaitionId}.R;
 import ${applicaitionId}.${packageName}.contract.${functionName}Contract;
 import ${applicaitionId}.${packageName}.presenter.${functionName}Presenter;
@@ -47,16 +47,16 @@ public class ${functionName}Fragment
 
     @Override
     public void showLoading() {
-        if (isAdded()) {
-            showLoadingDialog(getActivity());
-        }
+//        if (isAdded()) {
+//            showLoadingDialog(getActivity());
+//        }
     }
 
     @Override
     public void dismissLoading() {
-        if (isAdded()) {
-            dismissLoadingDialog();
-        }
+//        if (isAdded()) {
+//            dismissLoadingDialog();
+//        }
     }
 
     @Override

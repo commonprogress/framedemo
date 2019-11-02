@@ -8,7 +8,7 @@ package com.dongxl.library.utils;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.support.annotation.StringRes;
+import androidx.annotation.StringRes;
 import android.widget.Toast;
 
 import com.dongxl.library.R;

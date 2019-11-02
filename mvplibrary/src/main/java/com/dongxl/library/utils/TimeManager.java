@@ -4,10 +4,6 @@ package com.dongxl.library.utils;
 import android.os.SystemClock;
 
 /**
- * author：luck
- * project：laoyuegou
- * package：com.laoyuegou.android.replay.util
- * email：893855882@qq.com
  * data：2017/9/25
  */
 
