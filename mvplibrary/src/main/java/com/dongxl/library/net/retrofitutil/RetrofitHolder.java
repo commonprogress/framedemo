@@ -6,6 +6,7 @@ import com.google.gson.GsonBuilder;
 import com.dongxl.library.net.interceptor.SignInterceptorPluto;
 import com.dongxl.library.utils.AppMaster;
 
+import java.util.Collections;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -49,6 +50,9 @@ public class RetrofitHolder {
                     .connectTimeout(15, TimeUnit.SECONDS)
                     .readTimeout(30, TimeUnit.SECONDS)
                     .retryOnConnectionFailure(true)
+//                    .certificatePinner(HttpsUtils.getCertificatePinner());
+//                    .connectionSpecs(Collections.singletonList(HttpsUtils.getConnectionSpec()))
+//                    .connectionSpecs(HttpsUtils.createModernConnectionSpec())
                     .sslSocketFactory(sslParams.sSLSocketFactory, sslParams.trustManager)
                     .hostnameVerifier(new HttpsUtils.AllHostnameVerifier())
                     .build();

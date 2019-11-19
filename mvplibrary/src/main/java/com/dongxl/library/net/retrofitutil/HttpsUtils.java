@@ -9,12 +9,15 @@ import java.io.InputStream;
 import java.security.KeyManagementException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.KeyManager;
@@ -25,6 +28,10 @@ import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
+
+import okhttp3.CipherSuite;
+import okhttp3.ConnectionSpec;
+import okhttp3.TlsVersion;
 
 /**
  * desc：https认证
@@ -113,9 +120,7 @@ public class HttpsUtils {
                 }
             }
 
-            TrustManagerFactory trustManagerFactory;
-
-            trustManagerFactory = TrustManagerFactory.
+            TrustManagerFactory trustManagerFactory = TrustManagerFactory.
                     getInstance(TrustManagerFactory.getDefaultAlgorithm());
             trustManagerFactory.init(keyStore);
 
@@ -213,6 +218,61 @@ public class HttpsUtils {
         public X509Certificate[] getAcceptedIssuers() {
             return new X509Certificate[0];
         }
+    }
+
+//    private static CertificatePinner createCertificatePinner() {
+//        try {
+//            byte[] publicKeySha256 = MessageDigest.getInstance("SHA-256").digest(ServerTrust.getCA_trustArray());
+//            return new CertificatePinner.Builder()
+//                    .add(ServerTrust.getDomain(), "sha256/" + AESUtils.base64(publicKeySha256))
+//                    .build();
+//        } catch (NoSuchAlgorithmException e) {
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
+
+//    public CertificatePinner getCertificatePinner() {
+//        CertificatePinner certificatePinner = new CertificatePinner.Builder()
+//                .add(hostname, "sha1/mBN/TTGneHe2Hq0yFG+SRt5nMZQ=")
+//                .add(hostname, "sha1/6CgvsAgBlX3PYiYRGedC0NZw7ys=")
+//                .build();
+//        return certificatePinner;
+//    }
+
+    public static List<ConnectionSpec> createModernConnectionSpec() {
+        ConnectionSpec spec = new ConnectionSpec.Builder(ConnectionSpec.MODERN_TLS)
+                .tlsVersions(TlsVersion.TLS_1_2)
+                .cipherSuites(
+                        CipherSuite.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
+                        CipherSuite.TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,
+                        CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
+                        CipherSuite.TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,
+                        CipherSuite.TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
+                )
+                .build();
+        if (null != spec) {
+            List<ConnectionSpec> specs = new ArrayList<>();
+            specs.add(spec);
+            specs.add(ConnectionSpec.CLEARTEXT);
+            return specs;
+        }
+        return null;
+    }
+
+    public static ConnectionSpec getConnectionSpec() {
+        //specifying the specs; this is impotent otherwise android <5 won't work
+        //And do note to include the android < 5 supported specs.
+        ConnectionSpec spec = new ConnectionSpec.Builder(ConnectionSpec.MODERN_TLS)
+                .tlsVersions(TlsVersion.TLS_1_1, TlsVersion.TLS_1_2)
+                .cipherSuites(
+                        CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
+                        CipherSuite.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
+                        CipherSuite.TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,
+                        CipherSuite.TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,
+                        CipherSuite.TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384)
+                .build();
+        return spec;
     }
 
 }
