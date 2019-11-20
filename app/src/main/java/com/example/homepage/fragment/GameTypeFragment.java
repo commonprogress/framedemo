@@ -1,10 +1,15 @@
 package com.example.homepage.fragment;
 
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
+
 import android.view.View;
 
 import com.dongxl.library.mvp.BaseMvpFragment;
+import com.dongxl.rootdao.RoomDatabaseOperate;
+import com.dongxl.rootdao.daos.BookDao;
+import com.dongxl.rootdao.daos.UserDao;
 import com.example.homepage.contract.GameTypeContract;
 import com.example.homepage.presenter.GameTypePresenter;
 import com.example.myapplication.R;
@@ -19,6 +24,15 @@ public class GameTypeFragment
         implements GameTypeContract.View {
 
     public static final String TAG = GameTypeFragment.class.getSimpleName();
+
+    private BookDao bookDao;
+
+    public BookDao getBookDao() {
+        if (null != bookDao) {
+            bookDao = RoomDatabaseOperate.getInstance().getBookDao(getActivity());
+        }
+        return bookDao;
+    }
 
     /**
      * ———————————————— ↓↓↓↓ BaseMvpFragment code ↓↓↓↓ ————————————————
@@ -80,7 +94,7 @@ public class GameTypeFragment
 
     @Override
     public int getResourceId() {
-         return R.layout.fragment_gametype;
+        return R.layout.fragment_gametype;
     }
 
     /**
@@ -96,12 +110,13 @@ public class GameTypeFragment
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
+        getBookDao().loadUserAndPetNames();
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        bookDao = null;
     }
 
 }
