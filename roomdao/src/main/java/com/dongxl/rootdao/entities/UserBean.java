@@ -25,7 +25,7 @@ public class UserBean {
     //    @ColumnInfo(name = "first_name")
     public String firstName;//columninfo默认字段名firstName
 
-    @PrimaryKey //可以设置多个主键
+//    @PrimaryKey //可以设置多个主键
     @ColumnInfo(name = "last_name")
     public String lastName;
 

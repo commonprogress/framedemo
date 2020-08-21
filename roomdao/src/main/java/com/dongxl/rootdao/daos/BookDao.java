@@ -13,10 +13,10 @@ import java.util.List;
 @Dao
 public interface BookDao {
 
-    @Query("SELECT * FROM books "
-            + "INNER JOIN users ON users.id = books.user_id "
-            + "WHERE users.firstName LIKE :userName")
-    List<BookBean> findBooksBorrowedByNameSync(String userName);
+//    @Query("SELECT * FROM books "
+//            + "INNER JOIN users ON users.id = books.user_id "
+//            + "WHERE users.firstName LIKE :userName")
+//    List<BookBean> findBooksBorrowedByNameSync(String userName);
 
     @Query("SELECT users.firstName AS userName, books.title AS petName "
             + "FROM users, books "

@@ -20,7 +20,7 @@ import com.dongxl.rootdao.entities.BookBean;
 import com.dongxl.rootdao.entities.FlowBean;
 import com.dongxl.rootdao.entities.UserBean;
 import com.dongxl.rootdao.utils.Converters;
-import com.dongxl.rootdao.utils.DataUtils;
+//import com.dongxl.rootdao.utils.DataUtils;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -31,9 +31,9 @@ import java.util.concurrent.Executors;
         UserBean.class,
         BookBean.class,
         FlowBean.class
-}, version = RoomDatabaseManager.dbVersion)
+}, version = RoomDatabaseManager.dbVersion, exportSchema = false)
 // sqlite 只支持 NULL、INTEGER、REAL、TEXT、BLOB 这些类型，如果是 Date 或者自定义的枚举等类型，则需要声明 @TypeConverters 来做类型转换了
-@TypeConverters(value = {DataUtils.class, Converters.class})
+@TypeConverters(value = {/*DataUtils.class, */Converters.class})
 public abstract class RoomDatabaseManager extends RoomDatabase {
 
     private final static String dbName = "room_test.db";

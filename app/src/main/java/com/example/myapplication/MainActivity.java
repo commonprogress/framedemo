@@ -1,15 +1,28 @@
 package com.example.myapplication;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+
+import com.dongxl.camera.TextureCameraActivity;
+import com.dongxl.library.utils.LogUtils;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
 
+import android.view.DragAndDropPermissions;
+import android.view.DragEvent;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -21,6 +34,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = MainActivity.class.getSimpleName();
+    private static final int REQUEST_STORAGE_PERMISSION = 101;
     private TextView textView;
     private RecyclerView recyclerView;
     private TestRecyclerAdapter adapter;
@@ -45,6 +60,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this, TextureCameraActivity.class);
+                startActivity(intent);
             }
         });
         new Thread(new Runnable() {
@@ -53,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 jsoupdata();
             }
         }).start();
+        checkReadPermission();
     }
 
     private void testData() {
@@ -89,6 +109,47 @@ public class MainActivity extends AppCompatActivity {
                 textView.setText(text);
             }
         });
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case REQUEST_STORAGE_PERMISSION:
+                if (permissions.length != 0 && grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(this, "获取权限失败，请稍后在重试", Toast.LENGTH_SHORT).show();
+                } else {
+                    //TODO 请求权限弹窗 允许后回调返回的成功回调 在此写业务逻辑
+
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+
+    /**
+     * 请求读写权限
+     */
+    private void checkReadPermission() {
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+                && ContextCompat.checkSelfPermission(this,
+                Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+            //TODO 此处写第一次检查权限且已经拥有权限后的业务
+
+        } else {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    || ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA},
+                        REQUEST_STORAGE_PERMISSION);
+            } else {
+                LogUtils.e(TAG, "requestPermissions");
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA},
+                        REQUEST_STORAGE_PERMISSION);
+            }
+        }
     }
 
 }

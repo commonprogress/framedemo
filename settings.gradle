@@ -1,4 +1,4 @@
 rootProject.name = 'framedemo'
-include ':app', ':roomdao',
+include ':app', ':roomdao', ':camera',
         ':mvplibrary',
         ':imageload'
